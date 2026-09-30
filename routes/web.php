@@ -2,21 +2,38 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/welcome', function () {
+    return view('welcome');
 });
 
 
 Route::get('/', function () {
-    return view('berita');
+    return view('home', [
+        "title" => "Home",
+    ]);
 });
 
 
-Route::get('/', function () {
-    return view('kontak');
+Route::get('/berita', function () {
+    return view('berita', [
+        "title" => "Berita",
+    ]);
 });
 
 
-Route::get('/', function () {
-    return view('profile');
+Route::get('/kontak', function () {
+    return view('kontak', [
+        "title" => "Kontak", 
+    ]);
+});
+
+
+Route::get('/profile', function () {
+    return view('profile', [
+        "title" => "Profile",
+        "name" => "Dimas Panji",
+        "nim" => "13242520015",
+        "prodi" => "Teknik Industri",
+        "image" => "profile.jpg"
+    ]);
 });
