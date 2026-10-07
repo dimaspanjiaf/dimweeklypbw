@@ -1,22 +1,13 @@
 <?php
-use App\Berita;
-use Illuminate\Support\Facades\Route;
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+namespace App;
 
+use Illuminate\Database\Eloquent\Model;
 
-Route::get('/', function () {
-    return view('home', [
-        "title" => "Home",
-    ]);
-});
-
-
-Route::get('/berita', function () {
-    $data_berita = 
-[
+class Berita extends Model
+{
+    private static  $data_berita = 
+    [
         [
             "judul" => "Indonesia Menang",
             "slug" => "indonesia-menang",
@@ -36,36 +27,13 @@ Route::get('/berita', function () {
             "konten" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga iste quisquam placeat tempora magnam explicabo amet hic eveniet atque eos distinctio possimus omnis ipsam ad neque doloribus, iure eius nostrum officia. Magni velit laudantium, numquam mollitia ea perferendis quisquam doloribus."
         ],
     ];
-    return view('berita', [
-        "title" => "Berita",
-        "beritas" => $data_berita,
-    ]);
-});
 
-///routing untuk handling 1 berita
+    $singlenews = [];
+    foreach ($data_berita as $berita) {
+        if ($berita['slug'] === $slug) {
+            $singlenews = $berita;
+            break;
+        }
+    }   
 
-route::get('berita/{slug}', function ($slug) {
-       
-
-    return view('beritatunggal', [
-        'title' => "Judul berita tunggal",
-        "beritas" => berita::all(),
-    ]);
-});
-
-Route::get('/kontak', function () {
-    return view('kontak', [
-        "title" => "Kontak", 
-    ]);
-});
-
-
-Route::get('/profile', function () {
-    return view('profile', [
-        "title" => "Profile",
-        "name" => "Dimas Panji",
-        "nim" => "13242520015",
-        "prodi" => "Teknik Industri",
-        "image" => "profile.jpg"
-    ]);
-});
+}
