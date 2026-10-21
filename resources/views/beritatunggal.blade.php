@@ -8,6 +8,8 @@
     <div class = "text-justify">
         <p>{{ $singlenews['konten'] }}</p>
     </div>
+
+    <a href="/berita" class="btn btn-primary">Kembali ke halaman berita</a>
     
 
 @endsection

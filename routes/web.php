@@ -1,6 +1,7 @@
 <?php
-use App\Berita;
+use App\Http\Controllers\BeritaController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -14,44 +15,8 @@ Route::get('/', function () {
 });
 
 
-Route::get('/berita', function () {
-    $data_berita = 
-[
-        [
-            "judul" => "Indonesia Menang",
-            "slug" => "indonesia-menang",
-            "penulis" => "Dimas Panji",
-            "konten" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga iste quisquam placeat tempora magnam explicabo amet hic eveniet atque eos distinctio possimus omnis ipsam ad neque doloribus, iure eius nostrum officia. Magni velit laudantium, numquam mollitia ea perferendis quisquam doloribus."
-        ],
-        [
-            "judul" => "Cara Turun Berat Badan Instant",
-            "slug" => "cara-turun-berat-badan-instant",
-            "penulis" => "Khiara Putri",
-            "konten" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga iste quisquam placeat tempora magnam explicabo amet hic eveniet atque eos distinctio possimus omnis ipsam ad neque doloribus, iure eius nostrum officia. Magni velit laudantium, numquam mollitia ea perferendis quisquam doloribus."
-        ],
-        [
-            "judul" => "Merakit Robot",
-            "slug" => "merakit-robot",
-            "penulis" => "Keyjiro",
-            "konten" => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga iste quisquam placeat tempora magnam explicabo amet hic eveniet atque eos distinctio possimus omnis ipsam ad neque doloribus, iure eius nostrum officia. Magni velit laudantium, numquam mollitia ea perferendis quisquam doloribus."
-        ],
-    ];
-    return view('berita', [
-        "title" => "Berita",
-        "beritas" => $data_berita,
-    ]);
-});
-
-///routing untuk handling 1 berita
-
-route::get('berita/{slug}', function ($slug) {
-       
-
-    return view('beritatunggal', [
-        'title' => "Judul berita tunggal",
-        "beritas" => berita::all(),
-    ]);
-});
+Route::get('/berita', [BeritaController::class, 'tampildata']);
+Route::get('/berita/{slug}', [BeritaController::class, 'tampilberitatunggal']);
 
 Route::get('/kontak', function () {
     return view('kontak', [
