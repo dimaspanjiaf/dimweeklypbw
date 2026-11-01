@@ -1,19 +1,21 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Berita extends Model
 {
-   
+    use HasFactory;
+    protected $fillable = ['judul', 'slug', 'penulis', 'konten', 'data', 'date'];
 
 //    public static function ambildata()
 //    {
 //         return self::$data_berita;
 //    }
 
-//    public static function getBerita($slug)
+//    public static function getBerita($slug)ww
 //    {
 //         $beritas = self::$data_berita;
 //         $singlenews = [];

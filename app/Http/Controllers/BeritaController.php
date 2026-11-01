@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Berita;
 
 class BeritaController extends Controller
 {
@@ -10,17 +11,17 @@ class BeritaController extends Controller
     {
         return view('berita', [
             "title" => "Berita",
-            "beritas" => \App\Berita::all()
+            "beritas" => Berita::all()
     ]);
     }
 
     public static function tampilberitatunggal($slug)
     {
-       $berita = \App\Berita::all();
+       $beritas = Berita::all();
          $singlenews = [];
-        foreach ($berita as $berita) {
-            if ($berita['slug'] === $slug) {
-                $singlenews = $berita;
+        foreach ($beritas as $Berita) {
+            if ($Berita['slug'] === $slug) {
+                $singlenews = $Berita;
                 break;
             }
         };
