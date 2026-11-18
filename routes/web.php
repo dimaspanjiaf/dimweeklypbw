@@ -1,12 +1,12 @@
 <?php
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/welcome', function () {
     return view('welcome');
 });
-
 
 Route::get('/', function () {
     return view('home', [
@@ -34,3 +34,5 @@ Route::get('/profile', function () {
         "image" => "profile.jpg"
     ]);
 });
+
+Route::get('/datamahasiswa', [MahasiswaController::class, 'index']);    
