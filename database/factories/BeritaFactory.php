@@ -27,9 +27,10 @@ class BeritaFactory extends Factory
         return [
             'judul' => $title,
             'slug' => Str::slug($title),
-            'penulis' => $FakerID->name(),
-            'konten' => $FakerEN->paragraph(mt_rand(8, 15)),
-            'date' => $FakerEN->date('Y-m-d'),
+            'penulis' => $FakerEN->name(),
+            'konten' => collect($FakerEN->paragraphs(mt_rand(5, 10)))
+                ->map(fn ($p) => "<p>$p</p>")
+                ->implode(''),
         ];
     }
 }
